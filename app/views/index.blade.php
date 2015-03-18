@@ -1,7 +1,7 @@
 @extends('layouts.base') 
 
 @section('content')
-{{ $res }}
+@if ($contents == NULL)
 <article class="blog-main">
   <h3 class="am-article-title blog-title">
     <a href="#">Google fonts 的字體（display 篇）</a>
@@ -29,7 +29,31 @@
     </div>
   </div>
 </article>
+<hr class="am-article-divider blog-hr"/>
+@else
+    @foreach ($contents as $content)
+        <article class="blog-main">
+          <h3 class="am-article-title blog-title">
+            <a href="#">{{ $content["title"] }}</a>
+            @for ($i = 0, $color=Array("primary","secondary","success","warning","danger"); $i < count($content["tag"]); $i++)
+                <a style="color:white;" class="am-badge am-badge-{{$color[$i%5]}} am-round">{{$content["tag"][$i]}}</a> 
+            @endfor
+          </h3>
+          <h4 class="am-article-meta blog-meta"></a> posted on {{ $content["time"] }} by <a href="">{{ $content["author"] }}</a></h4>
+          <div class="am-g blog-content">
+            <div class="col-sm-12">
+              <p>{{ $content["content"]}} ...<a href="">阅读全文</a></p>
+            </div>
+          </div>
+        </article>
+        <hr class="am-article-divider blog-hr"/>
+    @endforeach
+        @if ($next != NULL)
+            <button type="button" class="am-btn am-btn-success am-radius am-btn-block">点击翻页O(∩_∩)O~</button>
+        @else
+            <button type="button" class="am-btn am-btn-success am-radius am-disabled am-btn-block">╮(╯_╰)╭没有更多了</button>
+        @endif
+@endif
 
-<hr class="am-article-divider blog-hr">
 @stop
 

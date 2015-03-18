@@ -3,36 +3,54 @@
 class IndexController extends BaseController 
 {
     public function index() {
-        $contents = $this->getIndexArticle();
-        return var_dump($contents);
+        $res = $this->getIndexArticle();
         $data = array(
-            "contents" => $contents,
+            "contents" => $res[0],
+            "next" => $res[1],
         );
+        #return var_dump($contents);
         return View::make('index', $data);
     }
 
-    private function getIndexArticle($num=2) {
+    public function getNextPageArticle() {
+        $page = (int)Input::get("page", '1');
+        $res = $this->getIndexArticle($page=$page);
+        $data = array(
+            "contents" => $res[0],
+            "next" => $res[1],
+        );
+        return json_encode($data);
+        
+    }
+
+    private function getIndexArticle($page=1, $num=2) {
         $res = DB::table("article")->get();
 
         $n = count($res);
         if ($n > 0) {
-            if ($n < $num) {
-                $res = array_slice($res, 0, $n);
+            if ($n <= ($num * $page)) {
+                $res = array_slice($res, $num*($page-1), $n);
             }
             else {
-                $res = array_slice($res, 0, $num);
+                $res = array_slice($res, $num*($page-1), $num);
             } 
+
+            if ($n > ($num * $page))
+                $next = 1;
+            else
+                $next = NULL;
 
             $contents = Array();
             foreach ($res as $r) {
                 #return $r;
                 $author = DB::table("user")->select('name')->whereRaw("id=$r->author")->first();
-                $sub_content = substr($r->content, 0, 300);
+                #$sub_content = substr($r->content, 0, 300);
+                $sub_content = $this->cutstr($r->content, 300);
                 $tags = $this->getTags($r->id);
                 $content = Array('title'=>$r->title, 'content'=>$sub_content, 'tag'=>$tags, 'time'=>$r->create_time, 'author'=>$author->name);
                 Array_push($contents, $content);
             }
-            return $contents;
+            return Array($contents, $next);
         }
         else {
             return NULL;
@@ -48,5 +66,41 @@ class IndexController extends BaseController
         }
 
         return $tags;
+    }
+
+    public function cutstr($sourcestr,$cutlength){
+        $returnstr = '';
+        $i = 0;
+        $n = 0;
+        $str_length = strlen($sourcestr);
+        $mb_str_length = mb_strlen($sourcestr,'utf-8');
+        while(($n < $cutlength) && ($i <= $str_length)){
+            $temp_str = substr($sourcestr,$i,1);
+            $ascnum = ord($temp_str);
+            if($ascnum >= 224){
+                $returnstr = $returnstr.substr($sourcestr,$i,3);
+                $i = $i + 3;
+                $n++;
+            }
+            elseif($ascnum >= 192){
+                $returnstr = $returnstr.substr($sourcestr,$i,2);
+                $i = $i + 2;
+                $n++;
+            }
+            elseif(($ascnum >= 65) && ($ascnum <= 90)){
+                $returnstr = $returnstr.substr($sourcestr,$i,1);
+                $i = $i + 1;
+                $n++;
+            }
+            else{
+                $returnstr = $returnstr.substr($sourcestr,$i,1);
+                $i = $i + 1;
+                $n = $n + 0.5;
+            }
+        }
+        if ($mb_str_length > $cutlength){
+            $returnstr = $returnstr . "...";
+        }
+        return $returnstr; 
     }
 } 

@@ -13,6 +13,7 @@
 
 #index
 Route::get('/', 'IndexController@index');
+Route::get('index/articles/', 'IndexController@getNextPageArticle');
 
 #login
 Route::get('login', 'LoginController@index');

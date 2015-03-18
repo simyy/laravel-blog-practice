@@ -193,7 +193,7 @@
         </ul>
       </section>
 
-      <section class="am-panel am-panel-default">
+      <!--section class="am-panel am-panel-default">
         <div class="am-panel-hd">团队成员</div>
         <div class="am-panel-bd">
           <ul class="sm-block-grid-4 blog-team">
@@ -223,7 +223,7 @@
             </li>
           </ul>
         </div>
-      </section>
+      </section-->
     </div>
   @show
   </div>
