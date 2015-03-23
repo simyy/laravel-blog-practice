@@ -100,7 +100,7 @@
 </header>
 
 <div class="am-g am-g-fixed blog-g-fixed">
-  <div class="col-md-8">
+  <div class="col-md-8" id="article">
     @section('content')
     <article class="blog-main">
       <h3 class="am-article-title blog-title">
@@ -173,6 +173,7 @@
   <div class="col-md-4 blog-sidebar">
     @section('sider')
     <div class="am-panel-group">
+      @section('about')
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">关于我</div>
         <div class="am-panel-bd">
@@ -181,6 +182,8 @@
           <a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
         </div>
       </section>
+      @show
+      @section('catalog')
       <section class="am-panel am-panel-default">
         <div class="am-panel-hd">文章目录</div>
         <ul class="am-list blog-list">
@@ -192,6 +195,7 @@
           <li><a href="#">[極短篇] Android v.s iOS，誰的字體好讀？</a></li>
         </ul>
       </section>
+      @show
 
       <!--section class="am-panel am-panel-default">
         <div class="am-panel-hd">团队成员</div>

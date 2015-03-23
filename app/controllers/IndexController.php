@@ -4,9 +4,13 @@ class IndexController extends BaseController
 {
     public function index() {
         $res = $this->getIndexArticle();
+        $about = $this->getAbout();
+        $catalog = $this->getCatalog();
         $data = array(
             "contents" => $res[0],
             "next" => $res[1],
+            "about"=> $about,
+            "catalog" => $catalog,
         );
         #return var_dump($contents);
         return View::make('index', $data);
@@ -19,7 +23,7 @@ class IndexController extends BaseController
             "contents" => $res[0],
             "next" => $res[1],
         );
-        return json_encode($data);
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
         
     }
 
@@ -36,9 +40,9 @@ class IndexController extends BaseController
             } 
 
             if ($n > ($num * $page))
-                $next = 1;
+                $next = $page + 1;
             else
-                $next = NULL;
+                $next = 0;
 
             $contents = Array();
             foreach ($res as $r) {
@@ -66,6 +70,26 @@ class IndexController extends BaseController
         }
 
         return $tags;
+    }
+
+    public function getAbout() {
+        $about = DB::table("config")->select("content")->where("name","=","about")->first();
+        return $about->content;
+    }
+
+    public function getCatalog() {
+        $catalog = DB::table("article")->select("title")->orderBy('create_time', 'desc')->get();
+        $n = count($catalog);
+
+        $res = Array();
+        if ($n > 20) {
+            $catalog  = array_slice($catalog, 0, 5);
+        }
+        foreach ($catalog as $item) {
+            Array_push($res, $item->title);
+        }  
+
+        return $res;
     }
 
     public function cutstr($sourcestr,$cutlength){
