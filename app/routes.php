@@ -15,6 +15,9 @@
 Route::get('/', 'IndexController@index');
 Route::get('index/articles/', 'IndexController@getNextPageArticle');
 
+#article
+Route::get('/article', 'ArticleController@index');
+
 #login
 Route::get('login', 'LoginController@index');
 Route::post('login', 'LoginController@login');
