@@ -64,7 +64,7 @@
 <body>
 <header class="am-topbar">
   <h1 class="am-topbar-brand">
-    <a href="#">laravel blog</a>
+    <a href="/">laravel blog</a>
   </h1>
 
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
@@ -73,17 +73,17 @@
 
   <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
-      <li class="am-active"><a href="#">首页</a></li>
-      <li><a href="#">目录</a></li>
+      <li class="am-active"><a href="/">首页</a></li>
+      <li><a href="catalog">目录</a></li>
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
           管理 <span class="am-icon-caret-down"></span>
         </a>
         <ul class="am-dropdown-content">
-          <li class="am-dropdown-header">标题</li>
-          <li><a href="#">关于我们</a></li>
-          <li><a href="#">关于字体</a></li>
-          <li><a href="#">TIPS</a></li>
+          <li><a href="edit">新增文章</a></li>
+          <li><a href="#">编辑公告</a></li>
+          <li><a href="#" data-am-modal="{target: '#my-alert'}">Version</a></li>
+          <li class="am-dropdown-header">version</li>
         </ul>
       </li>
       <li><a href="#">关于</a></li>
@@ -98,6 +98,21 @@
 
   </div>
 </header>
+
+<!--version button-->
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">Laravel Blog</div>
+    <div class="am-modal-bd">
+    Version: 1.0<br>
+    author: yxd123<br>
+    email: 176912231@qq.com
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
 
 <div class="am-g am-g-fixed blog-g-fixed">
   <div class="col-md-8" id="article">

@@ -4,9 +4,8 @@ class IndexController extends BaseController
 {
     public function index() {
         $res = $this->getIndexArticle();
-        $sider = new SiderController();
-        $catalog = $sider->getCatalog();
-        $about = $sider->getAbout();
+        $catalog = SiderController::getCatalog();
+        $about = SiderController::getAbout();
         $data = array(
             "contents" => $res[0],
             "next" => $res[1],
@@ -52,9 +51,8 @@ class IndexController extends BaseController
                 #$sub_content = substr($r->content, 0, 300);
                 $util = new UtilController();
                 $sub_content = $util->cutstr($r->content, 300);
-                $article = new ArticleController();
-                $tags = $article->getTags($r->id);
-                $content = Array('title'=>$r->title, 'content'=>$sub_content, 'tag'=>$tags, 'time'=>$r->create_time, 'author'=>$author->name);
+                $tags = ArticleController::getTags($r->id);
+                $content = Array('id'=>$r->id, 'title'=>$r->title, 'content'=>$sub_content, 'tag'=>$tags, 'time'=>$r->create_time, 'author'=>$author->name);
                 Array_push($contents, $content);
             }
             return Array($contents, $next);

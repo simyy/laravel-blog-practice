@@ -4,9 +4,8 @@ class ArticleController extends BaseController {
 
     public function index() {
         $id = (int)Input::get("id", '1'); 
-        $sider = new SiderController();
-        $catalog = $sider->getCatalog();
-        $about = $sider->getAbout();
+        $catalog = SiderController::getCatalog();
+        $about = SiderController::getAbout();
         $data = array(
             "content" => $this->getArticle($id),
             "about" => $about,
@@ -31,7 +30,7 @@ class ArticleController extends BaseController {
         return $content;
     }
 
-    public function getTags($articleid) {
+    static function getTags($articleid) {
         $tagids = DB::table("article_tag")->select("tagid")->whereRaw("articleid={$articleid}")->get();
         $tags = Array();
         foreach($tagids as $tagid) {

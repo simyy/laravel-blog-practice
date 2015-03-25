@@ -1,12 +1,12 @@
 <?php
 
 class UtilController extends BaseController {
-    public function getAbout() {
+    static function getAbout() {
         $about = DB::table("config")->select("content")->where("name","=","about")->first();
         return $about->content;
     }
 
-    public function cutstr($sourcestr,$cutlength){
+    static function cutstr($sourcestr,$cutlength){
         $returnstr = '';
         $i = 0;
         $n = 0;

@@ -71,7 +71,7 @@
   <div class="am-panel-hd">文章目录</div>
   <ul class="am-list blog-list">
   @foreach ($catalog as $item)
-    <li><a href="#">{{ $item }}</a></li>
+    <li><a href="article?id={{ $item->id }}">{{ $item->title }}</a></li>
   @endforeach
   </ul>
 </section>
