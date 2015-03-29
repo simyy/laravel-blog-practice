@@ -83,7 +83,9 @@
           <li><a href="edit">新增文章</a></li>
           <li><a href="#">编辑公告</a></li>
           <li><a href="#" data-am-modal="{target: '#my-alert'}">Version</a></li>
-          <li class="am-dropdown-header">version</li>
+          @if (Session::has('login'))
+              <li class="am-dropdown-header"><a href="unlogin">退出</a></li>
+          @endif
         </ul>
       </li>
       <li><a href="#">关于</a></li>
@@ -257,6 +259,7 @@
 
 <script src="assets/js/zepto.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
+</script>
 @yield('script')
 </body>
 </html>

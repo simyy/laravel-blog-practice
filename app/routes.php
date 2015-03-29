@@ -24,9 +24,11 @@ Route::get('/catalog', 'CatalogController@index');
 #login
 Route::get('login', 'LoginController@index');
 Route::post('login', 'LoginController@login');
+Route::get('unlogin', 'LoginController@unlogin');
 
 #edit
 Route::get('edit', 'EditController@index');
+Route::post('edit', 'EditController@newPost');
 
 #set
 Route::get('set', 'SetController@index');

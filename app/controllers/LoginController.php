@@ -6,7 +6,7 @@ class LoginController extends BaseController {
         return View::make('login');
     }
 
-    public function login()
+    public function login($route="/")
     {
         $name = Input::get('user');
         $passwd = Input::get('passwd');
@@ -14,10 +14,11 @@ class LoginController extends BaseController {
         $res = $this->checkUser($name, $passwd);
 
         if ($res) {
-            return "success";
+            Session::put("login", "1");
+            return Redirect::to($route);
         }
         else {
-            return "failure";
+            return Redirect::to('login');
         }
     }
 
@@ -31,5 +32,17 @@ class LoginController extends BaseController {
         else {
             return NULL;    
         }
+    }
+
+    static function checkLogin() {
+        $login = Session::get('login', NULL);
+        if ($login == NULL)
+            return View::make('login'); 
+        return NULL;
+    }
+
+    public function unLogin() {
+        Session::flush();
+        return Redirect::to('/');
     }
 }

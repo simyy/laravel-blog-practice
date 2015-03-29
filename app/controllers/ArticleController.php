@@ -41,4 +41,9 @@ class ArticleController extends BaseController {
         return $tags;
     }
 
+    static function getAllTags() {
+        $r = DB::table("tag")->select("id", "name")->get();
+        return $r;
+    }
+
 }

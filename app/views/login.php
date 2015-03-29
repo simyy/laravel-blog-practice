@@ -44,7 +44,7 @@
     <br>
     <br>
 
-    <form action="#" method="post" class="am-form">
+    <form action="login" method="post" class="am-form">
       <label for="user">邮箱:</label>
       <input type="text" name="user" id="user" value="">
       <br>
