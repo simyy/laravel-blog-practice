@@ -6,9 +6,13 @@ class EditController extends BaseController
         $r = LoginController::checkLogin();
         if ($r != NULL)
             return $r;
+        $catalog = SiderController::getCatalog();
+        $about = SiderController::getAbout();
         $tags = ArticleController::getAllTags();
         $data = array(
             "tags"=>$tags,
+            "about"=> $about,
+            "catalog" => $catalog,
         );
         return View::make("edit", $data);
     }

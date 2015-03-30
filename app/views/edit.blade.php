@@ -47,7 +47,27 @@
     </div>
   </div>
 </div>
+@stop
 
+
+@section('about')
+<section class="am-panel am-panel-default">
+  <div class="am-panel-hd">关于</div>
+    <div class="am-panel-bd">
+    <p>{{ $about }}</p><a class="am-btn am-btn-success am-btn-sm" href="#">查看更多 →</a>
+  </div>
+</section>
+@stop
+
+@section('catalog')
+<section class="am-panel am-panel-default">
+  <div class="am-panel-hd">文章目录</div>
+  <ul class="am-list blog-list">
+  @foreach ($catalog as $item)
+    <li><a href="article?id={{ $item->id }}">{{ $item->title }}</a></li>
+  @endforeach
+  </ul>
+</section>
 @stop
 
 @section('script')
