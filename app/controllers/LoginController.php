@@ -14,7 +14,7 @@ class LoginController extends BaseController {
         $res = $this->checkUser($name, $passwd);
 
         if ($res) {
-            Session::put("login", "1");
+            Session::put("login", $name);
             return Redirect::to($route);
         }
         else {
@@ -27,7 +27,7 @@ class LoginController extends BaseController {
         $res = DB::table("user")->whereRaw("`name`='{$name}' and `passwd`=PASSWORD('{$passwd}')")->get();
 
         if (count($res) > 0) {
-            return $res[0];
+            return $res[0]->id;
         }
         else {
             return NULL;    

@@ -42,7 +42,7 @@
           <h4 class="am-article-meta blog-meta"></a> posted on {{ $content["time"] }} by <a href="">{{ $content["author"] }}</a></h4>
           <div class="am-g blog-content">
             <div class="col-sm-12">
-              <p>{{ $content["content"]}} ...<a href="">阅读全文</a></p>
+              <p>{{ $content["content"]}} ...<a href="article?id={{ $content["id"] }}">阅读全文</a></p>
             </div>
           </div>
         </article>
@@ -93,7 +93,7 @@
   <h4 class="am-article-meta blog-meta"></a> posted on [%=o.contents[i].time%] by <a href="">[%=o.contents[i].author%]</a></h4>
   <div class="am-g blog-content">
     <div class="col-sm-12">
-      <p>[%=o.contents[i].content%] ...<a href="">阅读全文</a></p>
+      [%=o.contents[i].content%] ...<a href="">阅读全文</a>
     </div>
   </div>
 </article>
@@ -102,7 +102,7 @@
 [% if (o.next != 0) { %]
     <button type="button" class="am-btn am-btn-success am-radius am-btn-block" onclick="nextPage([%=o.next%])">点击翻页O(∩_∩)O~</button>
     [%if (o.next != 2) {%] 
-        <button type="button" class="am-btn am-btn-success am-radius am-btn-block" onclick="nextPage([%=o.next-1%])">返回前页O(∩_∩)O~</button>
+        <button type="button" class="am-btn am-btn-success am-radius am-btn-block" onclick="nextPage([%=o.next-2%])">返回前页O(∩_∩)O~</button>
     [% } %]
 [% } else { %]
     <button type="button" class="am-btn am-btn-success am-radius am-btn-block" onclick="nextPage(1)">╮(╯_╰)╭没有更多了,返回首页吧</button>

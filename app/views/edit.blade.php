@@ -100,7 +100,18 @@ $(function() {
                 alert("内容为空，不允许提交"); 
                 return;
             }
-            PostSubmit('edit', title, content, tag);
+            $.ajax({
+                url: 'edit',
+                type: 'POST',
+                data: {"title":title, "content":content, "tag":tag},
+                success: function(msg) {
+                    msg = JSON.parse(msg);
+                    if (msg.status == 200)
+                        window.location.href = "article/?id="+msg.id;
+                    else 
+                        alert(msg.message);
+                }
+            });
         },
         onCancel: function() {
           //alert('继续编辑吧！！');
@@ -108,36 +119,6 @@ $(function() {
       });
     });
 });
-
-function PostSubmit(url, para1, para2,para3) {  
-    var postUrl = url;//提交地址     
-    var _para1 = para1;//第一个数据     
-    var _para2 = para2;//第二个数据     
-    var _para3 = para3;//第三个数据     
-    
-    var ExportForm = document.createElement("FORM");  
-    document.body.appendChild(ExportForm);  
-    ExportForm.method = "POST";  
-    var newElement = document.createElement("input");  
-    newElement.setAttribute("name", "title");  
-    newElement.setAttribute("type", "hidden");  
-    var newElement2 = document.createElement("input");  
-    newElement2.setAttribute("name", "content");  
-    newElement2.setAttribute("type", "hidden");  
-    var newElement3 = document.createElement("input");  
-    newElement3.setAttribute("name", "tag");  
-    newElement3.setAttribute("type", "hidden");  
-    ExportForm.appendChild(newElement);  
-    ExportForm.appendChild(newElement2);  
-    ExportForm.appendChild(newElement3);  
-    newElement.value = _para1;  
-    newElement2.value = _para2;  
-    newElement3.value = _para3;  
-    ExportForm.action = postUrl;  
-    ExportForm.target = "_blank";  
-    ExportForm.submit();  
-    document.body.removeChild(ExportForm);  
-}  
 
 </script>
 <script>
