@@ -30,5 +30,9 @@ Route::get('unlogin', 'LoginController@unlogin');
 Route::get('edit', 'EditController@index');
 Route::post('edit', 'EditController@newPost');
 
+#manage
+Route::get('manage', 'ManageController@index');
+Route::get('manage/next', 'ManageController@getTitleList');
+
 #set
 Route::get('set', 'SetController@index');

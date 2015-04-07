@@ -26,3 +26,12 @@ function nextPage(page) {
 	});
 }
 
+function nextTitles(page) {
+    url = "manage/next?page=" + page;
+    $.getJSON(url, function(data){
+        var d = data;
+        console.log(d.contents);
+        var h = tmpl("tmpl-title", d);
+		document.getElementById("title-list").innerHTML = h;
+    });
+}

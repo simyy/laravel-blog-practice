@@ -81,7 +81,7 @@
         </a>
         <ul class="am-dropdown-content">
           <li><a href="edit">新增文章</a></li>
-          <li><a href="#">编辑公告</a></li>
+          <li><a href="manage">后台管理</a></li>
           <li><a href="#" data-am-modal="{target: '#my-alert'}">Version</a></li>
           @if (Session::has('login'))
               <li class="am-dropdown-header"><a href="unlogin">退出</a></li>
