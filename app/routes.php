@@ -16,7 +16,7 @@ Route::get('/', 'IndexController@index');
 Route::get('index/articles/', 'IndexController@getNextPageArticle');
 
 #article
-Route::get('/article', 'ArticleController@index');
+Route::get('article', 'ArticleController@index');
 
 #catalog
 Route::get('/catalog', 'CatalogController@index');
@@ -33,6 +33,7 @@ Route::post('edit', 'EditController@newPost');
 #manage
 Route::get('manage', 'ManageController@index');
 Route::get('manage/next', 'ManageController@getTitleList');
+Route::post('manage/delete', 'ManageController@delete');
 
 #set
 Route::get('set', 'SetController@index');

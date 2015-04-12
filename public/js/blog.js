@@ -35,3 +35,23 @@ function nextTitles(page) {
 		document.getElementById("title-list").innerHTML = h;
     });
 }
+
+
+function mdelete(i) {
+    $.ajax({
+        url: 'manage/delete',
+        type: 'POST',
+        data: {"id":i},
+        success: function(msg) {
+            msg = JSON.parse(msg);
+            if(msg.status == 200)
+                window.location.href = "manage"
+            else
+                alert(msg.message);
+        }
+    });
+}
+
+function medit(i) {
+    window.location.href = "edit?id=" + i;
+}

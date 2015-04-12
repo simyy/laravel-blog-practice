@@ -29,6 +29,19 @@ class ManageController extends BaseController
 
     }
 
+    public function delete() {
+        $id = Input::get("id", ''); 
+        if ($id != '') {
+            $id = (int)$id;
+            DB::table("article")->where("id", "=", $id)->delete();
+            DB::table("article_tag")->where("articleid", "=", $id)->delete();
+            $content = Array("status"=>200, "message"=>"ok");
+        }
+        else
+            $content = Array("status"=>403, "message"=>"params error");
+        return json_encode($content);
+    }
+
     private function getTitles($page=1, $num=3) {
         $res = DB::table("article")->orderBy('create_time', 'desc')->get();
         $n = count($res);

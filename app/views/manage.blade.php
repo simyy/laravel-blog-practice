@@ -23,9 +23,8 @@
                   <div class="am-dropdown" data-am-dropdown="">
                     <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle=""><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                     <ul class="am-dropdown-content">
-                      <li><a href="#">1. 编辑</a></li>
-                      <li><a href="#">2. 下载</a></li>
-                      <li><a href="#">3. 删除</a></li>
+                      <li><a href="javascript:medit({{ $content["id"] }})">1. 编辑</a></li>
+                      <li><a href="javascript:mdelete({{ $content["id"] }})">2. 删除</a></li>
                     </ul>
                   </div>
                 </td>
@@ -85,9 +84,8 @@
                 <div class="am-dropdown" data-am-dropdown="">
                   <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle=""><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                   <ul class="am-dropdown-content">
-                    <li><a href="#">1. 编辑</a></li>
-                    <li><a href="#">2. 下载</a></li>
-                    <li><a href="#">3. 删除</a></li>
+                    <li><a href="javascript:medit([%=o.contents[i].id%])">1. 编辑</a></li>
+                    <li><a href="#">2. 删除</a></li>
                   </ul>
                 </div>
               </td>

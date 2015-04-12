@@ -3,12 +3,13 @@
 @section('content')
 <div class="am-form-group">
   <label for="title">标题</label>
-  <input type="text" class="am-form-field am-round" id="title" placeholder="输入文章标题">
+  <input type="text" class="am-form-field am-round" id="title" placeholder="请输入标题" value={{ $title }}>
 </div>
 <div class="am-form-group">
   <label for="content">正文</label>
-  <textarea id='content' name="area2" style="height:500px;width: 100%;" placeholder="Search W3School"></textarea>
+  <textarea id='content' name="area2" style="height:500px;width: 100%;" placeholder="Search W3School">{{ $content }}</textarea>
 </div>
+<input id="id" style="display:none;" value="{{ $id }}">
 
 <button style="float:right;" class="am-btn am-btn-primary" id="doc-confirm-toggle">完成编辑</button>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
@@ -81,6 +82,7 @@ $(function() {
       $('#my-confirm').modal({
         relatedTarget: this,
         onConfirm: function() {
+            var id = document.getElementById("id").value;
             var title = document.getElementById("title").value;
             var content = document.getElementsByClassName("nicEdit-main")[0].innerHTML;
             var tags = document.getElementsByName("mtag");
@@ -103,7 +105,7 @@ $(function() {
             $.ajax({
                 url: 'edit',
                 type: 'POST',
-                data: {"title":title, "content":content, "tag":tag},
+                data: {"id":id, "title":title, "content":content, "tag":tag},
                 success: function(msg) {
                     msg = JSON.parse(msg);
                     if (msg.status == 200)
