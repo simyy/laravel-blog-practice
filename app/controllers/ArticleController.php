@@ -21,7 +21,7 @@ class ArticleController extends BaseController {
             $res = DB::table("article")->orderBy('create_time', 'desc')->first(); 
         }
         else {
-            $res = DB::table("article")->where("id", "=", $id)->orderBy('create_time', 'desc')->first(); 
+            $res = DB::table("article")->where("id", "=", (int)$id)->orderBy('create_time', 'desc')->first(); 
         }
         $author = DB::table("user")->select('name')->whereRaw("id=$res->author")->first();
 

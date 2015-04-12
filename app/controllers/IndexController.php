@@ -46,7 +46,6 @@ class IndexController extends BaseController
 
             $contents = Array();
             foreach ($res as $r) {
-                #return $r;
                 $author = DB::table("user")->select('name')->whereRaw("id=$r->author")->first();
                 #$sub_content = substr($r->content, 0, 300);
                 $util = new UtilController();

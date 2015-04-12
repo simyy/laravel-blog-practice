@@ -44,10 +44,11 @@ class EditController extends BaseController
                 );
                 return json_encode($data, JSON_UNESCAPED_UNICODE);
             }
+            $author = DB::table("user")->where("name","=",Session::get("login"))->first();
             DB::table("article")->insert(array(
                 "title"=>$title,
                 "content"=>$content,
-                "author"=>Session::get("login", NULL),
+                "author"=>$author->id,
             ));
         }
         else {
