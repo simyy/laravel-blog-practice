@@ -1,8 +1,8 @@
-##laravel-blog
+## laravel-blog
 
 >laravel实现的博客系统
 
-####功能
+### 功能
 具体功能包括：
 
 * 博客首页
@@ -12,7 +12,7 @@
 * 文章编辑
 * 分类标签
 
-####Laravel 4 
+### Laravel 4 
 
 Laravel为4.2 
 
