@@ -1,4 +1,4 @@
-## laravel-blog
+## Laravel Blog Practice
 
 >laravel实现的博客系统
 
